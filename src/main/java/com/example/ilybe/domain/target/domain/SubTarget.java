@@ -26,5 +26,5 @@ public class SubTarget {
     private Boolean isAchieved;
 
     @OneToMany(mappedBy = "subTarget", cascade = CascadeType.ALL)
-    private List<SubTarget> subTargets;
+    private List<DetailTarget> detailTargets;
 }

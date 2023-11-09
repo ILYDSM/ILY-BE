@@ -2,6 +2,7 @@ package com.example.ilybe.domain.target.domain;
 
 import com.example.ilybe.domain.meet.domain.Meet;
 import com.example.ilybe.domain.theme.domain.Theme;
+import com.example.ilybe.domain.user.domain.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -35,4 +36,8 @@ public class Target {
     @OneToOne
     @JoinColumn(name = "meet_id")
     private Meet meet;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

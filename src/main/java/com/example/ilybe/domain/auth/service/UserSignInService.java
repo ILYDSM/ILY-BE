@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
-public class UserSigninService {
+public class UserSignInService {
     private final UserFacade userFacade;
     private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;

@@ -22,7 +22,10 @@ public class Meet {
     private String content;
 
     @Enumerated(EnumType.STRING)
-    private Type type;
+    @ElementCollection(targetClass = Type.class)
+    private List<Type> type;
+
+    private Long personnel;
 
     @OneToMany
     private List<User> users;

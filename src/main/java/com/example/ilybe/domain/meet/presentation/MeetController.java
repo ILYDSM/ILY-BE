@@ -3,8 +3,10 @@ package com.example.ilybe.domain.meet.presentation;
 import com.example.ilybe.domain.meet.presentation.dto.request.MeetCreateRequest;
 import com.example.ilybe.domain.meet.presentation.dto.request.MeetUpdateRequest;
 import com.example.ilybe.domain.meet.service.MeetCreateService;
+import com.example.ilybe.domain.meet.service.MeetDeleteService;
 import com.example.ilybe.domain.meet.service.MeetUpdateService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +22,7 @@ import javax.validation.Valid;
 public class MeetController {
     private final MeetCreateService meetCreateService;
     private final MeetUpdateService meetUpdateService;
+    private final MeetDeleteService meetDeleteService;
 
     @PostMapping
     public Long MeetCreate(@RequestBody @Valid MeetCreateRequest request) {
@@ -29,5 +32,10 @@ public class MeetController {
     @PatchMapping("/{id}")
     public void MeetUpdate(@PathVariable("id") Long meetId, @RequestBody @Valid MeetUpdateRequest request) {
         meetUpdateService.execute(meetId, request);
+    }
+
+    @DeleteMapping("/{id}")
+    public void MeetDelete(@PathVariable("id") Long meetId) {
+        meetDeleteService.execute(meetId);
     }
 }

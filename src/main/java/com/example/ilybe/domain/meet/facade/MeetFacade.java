@@ -40,4 +40,8 @@ public class MeetFacade {
     public Page<Meet> findByType(Type type, Pageable pageable) {
         return meetRepository.findByType(type, pageable);
     }
+
+    public List<Meet> findAll() {
+        return meetRepository.findAll();
+    }
 }

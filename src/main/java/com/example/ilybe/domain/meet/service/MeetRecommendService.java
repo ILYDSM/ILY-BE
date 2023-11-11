@@ -9,7 +9,6 @@ import com.example.ilybe.domain.user.domain.User;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,14 +38,8 @@ public class MeetRecommendService {
 
         Collections.shuffle(meets);
 
-        return listToPage(meets, pageable)
+        return meetFacade.listToPage(meets, pageable)
                 .map(MeetListResponse::from);
 
-    }
-
-    private Page<Meet> listToPage(List<Meet> meets, Pageable pageable) {
-        int start = (int) pageable.getOffset();
-        int end = Math.min((start + pageable.getPageSize()), meets.size());
-        return new PageImpl<>(meets.subList(start, end), pageable, meets.size());
     }
 }

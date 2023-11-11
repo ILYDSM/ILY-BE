@@ -5,6 +5,7 @@ import com.example.ilybe.domain.meet.presentation.dto.request.MeetCreateRequest;
 import com.example.ilybe.domain.meet.presentation.dto.request.MeetUpdateRequest;
 import com.example.ilybe.domain.meet.presentation.dto.response.MeetDetailsResponse;
 import com.example.ilybe.domain.meet.presentation.dto.response.MeetListResponse;
+import com.example.ilybe.domain.meet.service.MeetCategorySearchService;
 import com.example.ilybe.domain.meet.service.MeetCategoryService;
 import com.example.ilybe.domain.meet.service.MeetCreateService;
 import com.example.ilybe.domain.meet.service.MeetDeleteService;
@@ -38,6 +39,7 @@ public class MeetController {
     private final MeetRecommendService meetRecommendService;
     private final MeetCategoryService meetCategoryService;
     private final MeetSearchService meetSearchService;
+    private final MeetCategorySearchService meetCategorySearchService;
 
     @PostMapping
     public Long MeetCreate(@RequestBody @Valid MeetCreateRequest request) {
@@ -72,5 +74,10 @@ public class MeetController {
     @GetMapping("/search")
     public Page<MeetListResponse> MeetSearch(@RequestParam String keyword, Pageable pageable) {
         return meetSearchService.execute(keyword, pageable);
+    }
+
+    @GetMapping("/category/search")
+    public Page<MeetListResponse> MeetCategorySearch(@RequestParam Type type, @RequestParam String keyword, Pageable pageable) {
+        return meetCategorySearchService.execute(type, keyword, pageable);
     }
 }

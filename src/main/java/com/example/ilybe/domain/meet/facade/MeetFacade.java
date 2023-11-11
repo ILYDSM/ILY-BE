@@ -8,6 +8,7 @@ import com.example.ilybe.domain.meet.exception.MeetNotFoundException;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
@@ -34,14 +35,27 @@ public class MeetFacade {
     }
 
     public List<Meet> findByTypeIn(List<Type> type) {
-        return meetRepository.findByTypeIn(type);
+        return meetRepository.findByTypeIn(type)
+                .orElseThrow(() -> MeetNotFoundException.EXCEPTION);
     }
 
     public Page<Meet> findByType(Type type, Pageable pageable) {
-        return meetRepository.findByType(type, pageable);
+        return meetRepository.findByType(type, pageable)
+                .orElseThrow(() -> MeetNotFoundException.EXCEPTION);
     }
 
     public List<Meet> findAll() {
         return meetRepository.findAll();
+    }
+
+    public List<Meet> findByType(Type type) {
+        return meetRepository.findByType(type)
+                .orElseThrow(() -> MeetNotFoundException.EXCEPTION);
+    }
+
+    public Page<Meet> listToPage(List<Meet> meets, Pageable pageable) {
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), meets.size());
+        return new PageImpl<>(meets.subList(start, end), pageable, meets.size());
     }
 }

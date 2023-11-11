@@ -13,8 +13,6 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Entity
-@AllArgsConstructor
-@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,11 +29,19 @@ public class User {
     private List<Interest> interests;
 
     @Column(nullable = false)
-    private Long point;
+    private Integer point;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Target> targets;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orders;
+
+    @Builder
+    public User(String email, String password, List<Interest> interests) {
+        this.email = email;
+        this.password = password;
+        this.interests = interests;
+        this.point = 0;
+    }
 }

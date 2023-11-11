@@ -3,11 +3,15 @@ package com.example.ilybe.domain.meet.presentation;
 import com.example.ilybe.domain.meet.presentation.dto.request.MeetCreateRequest;
 import com.example.ilybe.domain.meet.presentation.dto.request.MeetUpdateRequest;
 import com.example.ilybe.domain.meet.presentation.dto.response.MeetDetailsResponse;
+import com.example.ilybe.domain.meet.presentation.dto.response.MeetListResponse;
 import com.example.ilybe.domain.meet.service.MeetCreateService;
 import com.example.ilybe.domain.meet.service.MeetDeleteService;
 import com.example.ilybe.domain.meet.service.MeetDetailsService;
+import com.example.ilybe.domain.meet.service.MeetRecommendService;
 import com.example.ilybe.domain.meet.service.MeetUpdateService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -27,6 +31,7 @@ public class MeetController {
     private final MeetUpdateService meetUpdateService;
     private final MeetDeleteService meetDeleteService;
     private final MeetDetailsService meetDetailsService;
+    private final MeetRecommendService meetRecommendService;
 
     @PostMapping
     public Long MeetCreate(@RequestBody @Valid MeetCreateRequest request) {
@@ -46,5 +51,10 @@ public class MeetController {
     @GetMapping("{id}")
     public MeetDetailsResponse MeetDetails(@PathVariable("id") Long meetId) {
         return meetDetailsService.execute(meetId);
+    }
+
+    @GetMapping
+    public Page<MeetListResponse> MeetRecommend(Pageable pageable) {
+        return meetRecommendService.execute(pageable);
     }
 }

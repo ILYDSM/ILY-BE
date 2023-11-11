@@ -5,12 +5,14 @@ import com.example.ilybe.domain.meet.facade.MeetFacade;
 import com.example.ilybe.domain.meet.presentation.dto.response.MeetDetailsResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
 public class MeetDetailsService {
     private final MeetFacade meetFacade;
 
+    @Transactional
     public MeetDetailsResponse execute(Long meetId) {
         Meet meet = meetFacade.findByMeetId(meetId);
         Long users = new Long(meet.getUsers().size());

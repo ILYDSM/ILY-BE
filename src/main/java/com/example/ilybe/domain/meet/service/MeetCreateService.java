@@ -7,6 +7,7 @@ import com.example.ilybe.domain.user.domain.User;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -14,6 +15,7 @@ public class MeetCreateService {
     private final MeetRepository meetRepository;
     private final UserFacade userFacade;
 
+    @Transactional
     public Long execute(MeetCreateRequest request) {
 
         User user = userFacade.getCurrentUser();

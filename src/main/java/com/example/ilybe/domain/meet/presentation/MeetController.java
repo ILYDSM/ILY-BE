@@ -1,9 +1,11 @@
 package com.example.ilybe.domain.meet.presentation;
 
+import com.example.ilybe.domain.meet.domain.Type;
 import com.example.ilybe.domain.meet.presentation.dto.request.MeetCreateRequest;
 import com.example.ilybe.domain.meet.presentation.dto.request.MeetUpdateRequest;
 import com.example.ilybe.domain.meet.presentation.dto.response.MeetDetailsResponse;
 import com.example.ilybe.domain.meet.presentation.dto.response.MeetListResponse;
+import com.example.ilybe.domain.meet.service.MeetCategoryService;
 import com.example.ilybe.domain.meet.service.MeetCreateService;
 import com.example.ilybe.domain.meet.service.MeetDeleteService;
 import com.example.ilybe.domain.meet.service.MeetDetailsService;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -32,6 +35,7 @@ public class MeetController {
     private final MeetDeleteService meetDeleteService;
     private final MeetDetailsService meetDetailsService;
     private final MeetRecommendService meetRecommendService;
+    private final MeetCategoryService meetCategoryService;
 
     @PostMapping
     public Long MeetCreate(@RequestBody @Valid MeetCreateRequest request) {
@@ -56,5 +60,10 @@ public class MeetController {
     @GetMapping
     public Page<MeetListResponse> MeetRecommend(Pageable pageable) {
         return meetRecommendService.execute(pageable);
+    }
+
+    @GetMapping("/find")
+    public Page<MeetListResponse> MeetCategory(@RequestParam Type type, Pageable pageable) {
+        return meetCategoryService.execute(type, pageable);
     }
 }

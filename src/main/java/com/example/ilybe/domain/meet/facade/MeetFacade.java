@@ -7,6 +7,8 @@ import com.example.ilybe.domain.meet.exception.CreatorMismatchedException;
 import com.example.ilybe.domain.meet.exception.MeetNotFoundException;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -33,5 +35,9 @@ public class MeetFacade {
 
     public List<Meet> findByTypeIn(List<Type> type) {
         return meetRepository.findByTypeIn(type);
+    }
+
+    public Page<Meet> findByType(Type type, Pageable pageable) {
+        return meetRepository.findByType(type, pageable);
     }
 }

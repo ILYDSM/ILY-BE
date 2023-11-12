@@ -3,6 +3,8 @@ package com.example.ilybe.domain.target.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,9 +24,12 @@ public class SubTarget {
     @JoinColumn(name = "target_id", nullable = false)
     private Target target;
 
-    @Column(nullable = false)
-    private Boolean isAchieved;
+    private LocalDate achievedAt;
 
     @OneToMany(mappedBy = "subTarget", cascade = CascadeType.ALL)
-    private List<DetailTarget> detailTargets;
+    private List<DetailTarget> detailTargets = new ArrayList<>();
+
+    public Boolean isAchieved() {
+        return achievedAt != null;
+    }
 }

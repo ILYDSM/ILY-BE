@@ -21,7 +21,4 @@ public class MeetController {
     public Long MeetCreate(@RequestBody @Valid MeetCreateRequest request) {
         return meetCreateService.execute(request);
     }
-
-    @PatchMapping
-    public void Meet
 }

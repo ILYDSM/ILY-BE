@@ -3,6 +3,7 @@ package com.example.ilybe.domain.target.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Getter
 @Entity
@@ -17,10 +18,13 @@ public class DetailTarget {
     @Column(nullable = false)
     private String content;
 
-    @Column(nullable = false)
-    private Boolean isAchieved;
+    private LocalDate achievedAt;
 
     @ManyToOne
     @JoinColumn(name = "sub_target_id", nullable = false)
     private SubTarget subTarget;
+
+    public Boolean isAchieved() {
+        return achievedAt != null;
+    }
 }

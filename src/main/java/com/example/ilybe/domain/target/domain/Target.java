@@ -6,6 +6,8 @@ import com.example.ilybe.domain.user.domain.User;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -21,17 +23,22 @@ public class Target {
     @Column(nullable = false)
     private String content;
 
-    private String cycle;
+    @Column(nullable = false)
+    private Integer cycleCount;
 
     @Column(nullable = false)
-    private Boolean achieved;
+    private Integer cycleTerm;
+
+    @Column(nullable = false)
+    private LocalDate cycleDate;
+    private LocalDate achievedAt;
 
     @OneToOne
-    @JoinColumn(name = "theme_id", nullable = false)
+    @JoinColumn(name = "theme_id")
     private Theme theme;
 
     @OneToMany(mappedBy = "target", cascade = CascadeType.ALL)
-    private List<SubTarget> subTargets;
+    private List<SubTarget> subTargets = new ArrayList<>();
 
     @OneToOne
     @JoinColumn(name = "meet_id")
@@ -40,4 +47,8 @@ public class Target {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public Boolean isAchieved() {
+        return achievedAt != null;
+    }
 }

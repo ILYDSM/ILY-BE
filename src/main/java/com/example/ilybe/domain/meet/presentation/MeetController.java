@@ -45,6 +45,8 @@ public class MeetController {
     public Long MeetCreate(@RequestBody @Valid MeetCreateRequest request) {
         return meetCreateService.execute(request);
     }
+<<<<<<< HEAD
+=======
 
     @PatchMapping("/{id}")
     public void MeetUpdate(@PathVariable("id") Long meetId, @RequestBody @Valid MeetUpdateRequest request) {
@@ -77,7 +79,7 @@ public class MeetController {
     }
 
     @GetMapping("/category/search")
+    public Page<MeetListResponse> MeetCategorySearch(@RequestParam Type type, @RequestParam String keyword, Pageable pageable) {
         return meetCategorySearchService.execute(type, keyword, pageable);
     }
-    public Page<MeetListResponse> MeetCategorySearch(@RequestParam Type type, @RequestParam String keyword, Pageable pageable) {
 }

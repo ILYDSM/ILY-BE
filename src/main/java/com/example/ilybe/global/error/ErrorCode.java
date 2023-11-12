@@ -6,6 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ErrorCode {
+    APPLICATION_NOT_CREATE(400, "Application Not Create"),
     PASSWORD_MISMATCH(401-1, "Password Mismatch"),
 
     EXPIRED_JWT(401-2, "Expired Jwt"),

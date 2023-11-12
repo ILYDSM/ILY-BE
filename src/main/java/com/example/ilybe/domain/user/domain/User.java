@@ -1,13 +1,12 @@
 package com.example.ilybe.domain.user.domain;
 
-import com.example.ilybe.domain.order.domain.Order;
 import com.example.ilybe.domain.target.domain.Target;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -32,10 +31,7 @@ public class User {
     private Integer point;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Target> targets;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Order> orders;
+    private List<Target> targets = new ArrayList<>();
 
     @Builder
     public User(String email, String password, List<Interest> interests) {
@@ -43,5 +39,9 @@ public class User {
         this.password = password;
         this.interests = interests;
         this.point = 0;
+    }
+
+    public void minusPoint(Integer price) {
+        this.point -= price;
     }
 }

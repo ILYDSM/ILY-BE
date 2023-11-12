@@ -1,5 +1,7 @@
 package com.example.ilybe.domain.user.domain;
 
+import com.example.ilybe.domain.meet.domain.Meet;
+import com.example.ilybe.domain.order.domain.Order;
 import com.example.ilybe.domain.target.domain.Target;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,6 +34,12 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Target> targets = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> orders;
+
+    @OneToMany
+    private List<Meet> bookmarks;
 
     @Builder
     public User(String email, String password, List<Interest> interests) {

@@ -1,12 +1,13 @@
 package com.example.ilybe.domain.meet.service;
 
 import com.example.ilybe.domain.meet.domain.Meet;
-import com.example.ilybe.domain.meet.domain.MeetRepository;
+import com.example.ilybe.domain.meet.domain.repository.MeetRepository;
 import com.example.ilybe.domain.meet.presentation.dto.request.MeetCreateRequest;
 import com.example.ilybe.domain.user.domain.User;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -14,6 +15,7 @@ public class MeetCreateService {
     private final MeetRepository meetRepository;
     private final UserFacade userFacade;
 
+    @Transactional
     public Long execute(MeetCreateRequest request) {
 
         User user = userFacade.getCurrentUser();

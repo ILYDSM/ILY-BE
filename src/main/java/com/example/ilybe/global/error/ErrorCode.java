@@ -14,11 +14,16 @@ public enum ErrorCode {
 
     INVALID_REFRESH_TOKEN(401-5, "Invalid Refresh Token"),
 
+    CREATOR_MISMATCHED(403-1, "Creator Mismatched"),
+
     USER_NOT_FOUND(404-1, "User Not Found"),
+    MEET_NOT_FOUND(404-2, "Meet Not Found"),
 
     REFRESH_TOKEN_NOT_FOUND(404-3, "RefreshToken Not Found"),
 
-    USER_EXIST(409, "User Exist"),
+    USER_EXIST(409-1, "User Exist"),
+
+    ALREADY_BOOKMARKED(409-2, "Already Bookmarked"),
 
     INTERNAL_SERVER_ERROR(500, "Internal Server Error");
 

@@ -36,4 +36,10 @@ public class Meet {
 
     @OneToOne(mappedBy = "meet", cascade = CascadeType.ALL)
     private Target target;
+
+    public void meetUpdate(String title, String content, List<Type> type){
+        this.title = title;
+        this.content = content;
+        this.type = type;
+    }
 }

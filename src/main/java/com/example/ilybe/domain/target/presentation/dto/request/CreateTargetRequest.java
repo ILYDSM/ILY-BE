@@ -28,7 +28,9 @@ public class CreateTargetRequest {
     @NotNull
     private List<String> detailTargets;
 
-    private Long themeId;
+    private String theme;
+
+    private Integer themePrice;
 
 //    @NotNull
 //    private String firstSubTarget;

@@ -19,8 +19,9 @@ public enum ErrorCode {
 
     USER_NOT_FOUND(404-1, "User Not Found"),
     MEET_NOT_FOUND(404-2, "Meet Not Found"),
+    APPLICATION_NOT_FOUND(404-3, "Application Not Found"),
 
-    REFRESH_TOKEN_NOT_FOUND(404-3, "RefreshToken Not Found"),
+    REFRESH_TOKEN_NOT_FOUND(404-4, "RefreshToken Not Found"),
 
     USER_EXIST(409-1, "User Exist"),
 

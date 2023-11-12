@@ -21,7 +21,9 @@ public enum ErrorCode {
 
     REFRESH_TOKEN_NOT_FOUND(404-3, "RefreshToken Not Found"),
 
-    USER_EXIST(409, "User Exist"),
+    USER_EXIST(409-1, "User Exist"),
+
+    ALREADY_BOOKMARKED(409-2, "Already Bookmarked"),
 
     INTERNAL_SERVER_ERROR(500, "Internal Server Error");
 

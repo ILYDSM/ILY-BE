@@ -1,13 +1,23 @@
 package com.example.ilybe.domain.user.domain;
 
+import com.example.ilybe.domain.meet.domain.Meet;
 import com.example.ilybe.domain.order.domain.Order;
 import com.example.ilybe.domain.target.domain.Target;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Getter
@@ -36,6 +46,9 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orders;
+
+    @OneToMany
+    private List<Meet> bookmarks;
 
     @Builder
     public User(String email, String password, List<Interest> interests) {

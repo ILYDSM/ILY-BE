@@ -7,8 +7,6 @@ import com.example.ilybe.domain.target.domain.repository.DetailTargetRepository;
 import com.example.ilybe.domain.target.domain.repository.SubTargetRepository;
 import com.example.ilybe.domain.target.domain.repository.TargetRepository;
 import com.example.ilybe.domain.target.presentation.dto.request.CreateTargetRequest;
-import com.example.ilybe.domain.theme.domain.Theme;
-import com.example.ilybe.domain.theme.domain.repository.ThemeRepository;
 import com.example.ilybe.domain.user.domain.User;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +19,6 @@ public class CreateTargetService {
     private final TargetRepository targetRepository;
     private final SubTargetRepository subTargetRepository;
     private final DetailTargetRepository detailTargetRepository;
-
-    private final ThemeRepository themeRepository;
     private final UserFacade userFacade;
 
     @Transactional
@@ -32,13 +28,8 @@ public class CreateTargetService {
 
         User user = userFacade.getCurrentUser();
 
-        Theme theme = null;
-
-        if(request.getThemeId() != null) {
-            theme = themeRepository.findById(request.getThemeId())
-                    .orElseThrow();
-
-            user.minusPoint(theme.getPrice());
+        if(request.getThemePrice() != null) {
+            user.minusPoint(request.getThemePrice());
         }
 
         Target target = targetRepository.save(
@@ -47,7 +38,7 @@ public class CreateTargetService {
                         .cycleDate(request.getCycleDate())
                         .cycleTerm(request.getCycleTerm())
                         .cycleCount(request.getCycleCount())
-                        .theme(theme)
+                        .theme(request.getTheme())
                         .user(user)
                         .build()
         );

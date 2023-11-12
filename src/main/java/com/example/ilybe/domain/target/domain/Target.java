@@ -1,9 +1,9 @@
 package com.example.ilybe.domain.target.domain;
 
 import com.example.ilybe.domain.meet.domain.Meet;
-import com.example.ilybe.domain.theme.domain.Theme;
 import com.example.ilybe.domain.user.domain.User;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -33,9 +33,9 @@ public class Target {
     private LocalDate cycleDate;
     private LocalDate achievedAt;
 
-    @OneToOne
-    @JoinColumn(name = "theme_id")
-    private Theme theme;
+    @Column(nullable = false)
+    @ColumnDefault("'Gray'")
+    private String theme;
 
     @OneToMany(mappedBy = "target", cascade = CascadeType.ALL)
     private List<SubTarget> subTargets = new ArrayList<>();

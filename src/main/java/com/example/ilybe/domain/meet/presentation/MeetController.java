@@ -45,8 +45,6 @@ public class MeetController {
     public Long MeetCreate(@RequestBody @Valid MeetCreateRequest request) {
         return meetCreateService.execute(request);
     }
-<<<<<<< HEAD
-=======
 
     @PatchMapping("/{id}")
     public void MeetUpdate(@PathVariable("id") Long meetId, @RequestBody @Valid MeetUpdateRequest request) {

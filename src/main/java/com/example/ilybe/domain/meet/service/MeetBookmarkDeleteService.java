@@ -1,7 +1,6 @@
 package com.example.ilybe.domain.meet.service;
 
 import com.example.ilybe.domain.meet.domain.Meet;
-import com.example.ilybe.domain.meet.exception.AlreadyBookmarkedException;
 import com.example.ilybe.domain.meet.facade.MeetFacade;
 import com.example.ilybe.domain.user.domain.User;
 import com.example.ilybe.domain.user.domain.repository.UserRepository;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class MeetBookmarkService {
+public class MeetBookmarkDeleteService {
     private final UserRepository userRepository;
     private final MeetFacade meetFacade;
     private final UserFacade userFacade;
@@ -24,14 +23,8 @@ public class MeetBookmarkService {
 
         List<Meet> bookmarks = user.getBookmarks();
 
-        if(!bookmarks.contains(meet)){
-            bookmarks.add(meet);
-        }
-        else{
-            throw AlreadyBookmarkedException.EXCEPTION;
-        }
+        bookmarks.remove(meet);
 
         userRepository.save(user);
-
     }
 }

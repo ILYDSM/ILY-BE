@@ -6,6 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ErrorCode {
+    APPLICATION_NOT_CREATE(400, "Application Not Create"),
     PASSWORD_MISMATCH(401-1, "Password Mismatch"),
 
     EXPIRED_JWT(401-2, "Expired Jwt"),
@@ -18,8 +19,9 @@ public enum ErrorCode {
 
     USER_NOT_FOUND(404-1, "User Not Found"),
     MEET_NOT_FOUND(404-2, "Meet Not Found"),
+    APPLICATION_NOT_FOUND(404-3, "Application Not Found"),
 
-    REFRESH_TOKEN_NOT_FOUND(404-3, "RefreshToken Not Found"),
+    REFRESH_TOKEN_NOT_FOUND(404-4, "RefreshToken Not Found"),
 
     USER_EXIST(409-1, "User Exist"),
 

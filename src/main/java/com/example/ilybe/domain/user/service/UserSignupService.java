@@ -22,6 +22,7 @@ public class UserSignupService {
 
         userRepository.save(
                 User.builder()
+                        .nickname(request.getNickname())
                         .email(request.getEmail())
                         .password(passwordEncoder.encode(request.getPassword()))
                         .interests(request.getInterests())

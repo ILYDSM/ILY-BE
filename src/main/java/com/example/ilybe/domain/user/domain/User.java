@@ -18,6 +18,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 10, nullable = false)
+    private String nickname;
+
     @Column(length = 50, nullable = false)
     private String email;
 
@@ -38,11 +41,18 @@ public class User {
     private List<Meet> bookmarks;
 
     @Builder
-    public User(String email, String password, List<Interest> interests) {
+    public User(String nickname, String email, String password, List<Interest> interests) {
+        this.nickname = nickname;
         this.email = email;
         this.password = password;
         this.interests = interests;
         this.point = 0;
+    }
+
+    @Builder
+    public User(Long id, String nickname) {
+        this.id = id;
+        this.nickname = nickname;
     }
 
     public void minusPoint(Integer price) {

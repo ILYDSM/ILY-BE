@@ -1,8 +1,10 @@
 package com.example.ilybe.domain.board.presentation;
 
-import com.example.ilybe.domain.board.presentation.dto.BoardCreateRequest;
+import com.example.ilybe.domain.board.presentation.dto.BoardRequest;
 import com.example.ilybe.domain.board.service.BoardCreateService;
+import com.example.ilybe.domain.board.service.BoardUpdateService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,9 +18,15 @@ import javax.validation.Valid;
 @RestController
 public class BoardController {
     private final BoardCreateService boardCreateService;
+    private final BoardUpdateService boardUpdateService;
 
     @PostMapping("/{id}")
-    public void BoardCreate(@PathVariable("id") Long meetId, @RequestBody @Valid BoardCreateRequest request) {
-        boardCreateService.execute(meetId, request);
+    public Long BoardCreate(@PathVariable("id") Long meetId, @RequestBody @Valid BoardRequest request) {
+        return boardCreateService.execute(meetId, request);
+    }
+
+    @PatchMapping("/{id}")
+    public void BoardUpdate(@PathVariable("id") Long boardId,  @RequestBody @Valid BoardRequest request) {
+        boardUpdateService.execute(boardId, request);
     }
 }

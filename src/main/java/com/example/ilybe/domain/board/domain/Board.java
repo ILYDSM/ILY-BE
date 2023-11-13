@@ -44,4 +44,9 @@ public class Board {
     @OneToOne
     @JoinColumn(name = "meet_id")
     private Meet meet;
+
+    public void boardUpdate(String content, LocalDateTime createDate) {
+        this.content = content;
+        this.createDate = createDate;
+    }
 }

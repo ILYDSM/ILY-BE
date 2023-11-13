@@ -16,12 +16,14 @@ public enum ErrorCode {
     INVALID_REFRESH_TOKEN(401-5, "Invalid Refresh Token"),
 
     CREATOR_MISMATCHED(403-1, "Creator Mismatched"),
+    WRITER_MISMATCHED(403-2, "Writer Mismatched"),
 
     USER_NOT_FOUND(404-1, "User Not Found"),
     MEET_NOT_FOUND(404-2, "Meet Not Found"),
     APPLICATION_NOT_FOUND(404-3, "Application Not Found"),
+    BOARD_NOT_FOUND(404-4, "Board Not Found"),
 
-    REFRESH_TOKEN_NOT_FOUND(404-4, "RefreshToken Not Found"),
+    REFRESH_TOKEN_NOT_FOUND(404-5, "RefreshToken Not Found"),
 
     USER_EXIST(409-1, "User Exist"),
 

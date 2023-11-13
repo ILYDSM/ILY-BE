@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @Getter
-public class BoardCreateRequest {
+public class BoardRequest {
     @NotNull(message = "내용을 입력해주세요.")
     private String content;
 }

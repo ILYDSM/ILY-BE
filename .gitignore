@@ -35,10 +35,6 @@
 
 .idea/workspace.xml
 
-gradle/wrapper/gradle-wrapper.jar
-
-gradle/wrapper/gradle-wrapper.properties
-
 .DS_Store
 
 .gradle/8.3/executionHistory/executionHistory.bin

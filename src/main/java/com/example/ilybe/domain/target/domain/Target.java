@@ -13,8 +13,6 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
-@Builder
 public class Target {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,5 +48,15 @@ public class Target {
 
     public Boolean isAchieved() {
         return achievedAt != null;
+    }
+
+    @Builder
+    public Target(String content, Integer cycleCount, Integer cycleTerm, LocalDate cycleDate, String theme, User user) {
+        this.content = content;
+        this.cycleCount = cycleCount;
+        this.cycleTerm = cycleTerm;
+        this.cycleDate = cycleDate;
+        this.theme = theme;
+        this.user = user;
     }
 }

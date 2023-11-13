@@ -9,6 +9,7 @@ import com.example.ilybe.domain.user.domain.User;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -19,6 +20,7 @@ public class BoardCreateService {
     private final MeetFacade meetFacade;
     private final UserFacade userFacade;
 
+    @Transactional
     public Long execute(Long meetId, BoardRequest request) {
         Meet meet = meetFacade.findByMeetId(meetId);
         User user = userFacade.getCurrentUser();

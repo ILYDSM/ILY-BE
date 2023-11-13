@@ -8,8 +8,6 @@ import java.time.LocalDate;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Builder
-@AllArgsConstructor
 public class DetailTarget {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,5 +24,15 @@ public class DetailTarget {
 
     public Boolean isAchieved() {
         return achievedAt != null;
+    }
+
+    @Builder
+    public DetailTarget(String content, SubTarget subTarget) {
+        this.content = content;
+        this.subTarget = subTarget;
+    }
+
+    public void updateAchievedAt(LocalDate achievedAt) {
+        this.achievedAt = achievedAt;
     }
 }

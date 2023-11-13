@@ -10,8 +10,6 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Builder
-@AllArgsConstructor
 public class SubTarget {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,5 +29,15 @@ public class SubTarget {
 
     public Boolean isAchieved() {
         return achievedAt != null;
+    }
+
+    @Builder
+    public SubTarget(String content, Target target) {
+        this.target = target;
+        this.content = content;
+    }
+
+    public void updateAchievedAt(LocalDate achievedAt) {
+        this.achievedAt = achievedAt;
     }
 }

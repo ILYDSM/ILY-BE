@@ -17,7 +17,7 @@ public class MeetListResponse {
         return MeetListResponse.builder()
                 .title(meet.getTitle())
                 .content(meet.getContent())
-                .participant(new Long(meet.getUsers().size()))
+                .participant((long)meet.getUsers().size())
                 .build();
     }
 }

@@ -26,6 +26,7 @@ public class ApplicantListService {
     @Transactional
     public Page<ApplicantListResponse> execute(Long meetId, Pageable pageable) {
         Meet meet = meetFacade.findByMeetId(meetId);
+        meetFacade.checkCreator(meet);
         List<Applicant> applicants = applicantFacade.findByMeet(meet);
 
         List<User> applicationUsers = applicants.stream()

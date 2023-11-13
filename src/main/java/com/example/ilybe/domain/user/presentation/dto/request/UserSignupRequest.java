@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class UserSignupRequest {
+    @NotNull(message = "닉네임을 입력해주세요.")
+    private String nickname;
 
     @Email(message = "email 형식에 맞춰주세요")
     private String email;

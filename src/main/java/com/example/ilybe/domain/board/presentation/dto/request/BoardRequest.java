@@ -1,4 +1,4 @@
-package com.example.ilybe.domain.board.presentation.dto;
+package com.example.ilybe.domain.board.presentation.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

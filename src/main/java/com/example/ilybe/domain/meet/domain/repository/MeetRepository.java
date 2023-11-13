@@ -20,5 +20,4 @@ public interface MeetRepository extends JpaRepository<Meet, Long> {
 
     Optional<List<Meet>> findByType(Type type);
 
-    Optional<Page<Meet>> findById(Long meetId, Pageable pageable);
 }

@@ -17,6 +17,7 @@ public enum ErrorCode {
 
     CREATOR_MISMATCHED(403-1, "Creator Mismatched"),
     WRITER_MISMATCHED(403-2, "Writer Mismatched"),
+    MEMBER_MISMATCHED(403-3, "Member Mismatched"),
 
     USER_NOT_FOUND(404-1, "User Not Found"),
     MEET_NOT_FOUND(404-2, "Meet Not Found"),

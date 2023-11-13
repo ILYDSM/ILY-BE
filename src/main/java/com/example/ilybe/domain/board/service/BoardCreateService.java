@@ -2,7 +2,7 @@ package com.example.ilybe.domain.board.service;
 
 import com.example.ilybe.domain.board.domain.Board;
 import com.example.ilybe.domain.board.domain.repository.BoardRepository;
-import com.example.ilybe.domain.board.presentation.dto.BoardRequest;
+import com.example.ilybe.domain.board.presentation.dto.request.BoardRequest;
 import com.example.ilybe.domain.meet.domain.Meet;
 import com.example.ilybe.domain.meet.facade.MeetFacade;
 import com.example.ilybe.domain.user.domain.User;

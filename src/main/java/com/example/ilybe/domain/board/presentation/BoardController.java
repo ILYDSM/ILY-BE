@@ -29,8 +29,8 @@ public class BoardController {
     private final BoardDetailsService boardDetailsService;
 
     @PostMapping("/{id}")
-    public Long BoardCreate(@PathVariable("id") Long meetId, @RequestBody @Valid BoardRequest request) {
-        return boardCreateService.execute(meetId, request);
+    public void BoardCreate(@PathVariable("id") Long meetId, @RequestBody @Valid BoardRequest request) {
+        boardCreateService.execute(meetId, request);
     }
 
     @PatchMapping("/{id}")

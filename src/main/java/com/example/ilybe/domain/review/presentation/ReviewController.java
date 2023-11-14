@@ -2,8 +2,10 @@ package com.example.ilybe.domain.review.presentation;
 
 import com.example.ilybe.domain.review.presentation.dto.request.ReviewRequest;
 import com.example.ilybe.domain.review.service.ReviewCreateService;
+import com.example.ilybe.domain.review.service.ReviewDeleteService;
 import com.example.ilybe.domain.review.service.ReviewUpdateService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +21,7 @@ import javax.validation.Valid;
 public class ReviewController {
     private final ReviewCreateService reviewCreateService;
     private final ReviewUpdateService reviewUpdateService;
+    private final ReviewDeleteService reviewDeleteService;
 
     @PostMapping("/{id}")
     public void reviewCreate(@PathVariable("id") Long meetId, @RequestBody @Valid ReviewRequest request) {
@@ -28,5 +31,10 @@ public class ReviewController {
     @PatchMapping("/{id}")
     public void reviewUpdate(@PathVariable("id") Long reviewId, @RequestBody @Valid ReviewRequest request) {
         reviewUpdateService.execute(reviewId, request);
+    }
+
+    @DeleteMapping("/{id}")
+    public void reviewDelete(@PathVariable("id") Long reviewId) {
+        reviewDeleteService.execute(reviewId);
     }
 }

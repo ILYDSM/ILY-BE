@@ -22,7 +22,7 @@ public class BoardDetailsService {
         Meet meet = meetFacade.findByMeetId(meetId);
         boardFacade.checkMember(meet);
 
-        List<BoardDetailsResponse> boardDetailsResponseList = boardFacade.findByMeet(meet).stream()
+        return boardFacade.findByMeet(meet).stream()
                 .map(board -> BoardDetailsResponse.builder()
                         .id(board.getId())
                         .content(board.getContent())
@@ -30,7 +30,5 @@ public class BoardDetailsService {
                         .createDate(board.getCreateDate())
                         .build())
                 .collect(Collectors.toList());
-
-        return boardDetailsResponseList;
     }
 }

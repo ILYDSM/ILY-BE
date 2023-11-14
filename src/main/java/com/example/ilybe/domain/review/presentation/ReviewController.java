@@ -2,7 +2,9 @@ package com.example.ilybe.domain.review.presentation;
 
 import com.example.ilybe.domain.review.presentation.dto.request.ReviewRequest;
 import com.example.ilybe.domain.review.service.ReviewCreateService;
+import com.example.ilybe.domain.review.service.ReviewUpdateService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,9 +18,15 @@ import javax.validation.Valid;
 @RestController
 public class ReviewController {
     private final ReviewCreateService reviewCreateService;
+    private final ReviewUpdateService reviewUpdateService;
 
     @PostMapping("/{id}")
     public void reviewCreate(@PathVariable("id") Long meetId, @RequestBody @Valid ReviewRequest request) {
         reviewCreateService.execute(meetId, request);
+    }
+
+    @PatchMapping("/{id}")
+    public void reviewUpdate(@PathVariable("id") Long reviewId, @RequestBody @Valid ReviewRequest request) {
+        reviewUpdateService.execute(reviewId, request);
     }
 }

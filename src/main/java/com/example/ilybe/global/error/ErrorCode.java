@@ -23,8 +23,9 @@ public enum ErrorCode {
     MEET_NOT_FOUND(404-2, "Meet Not Found"),
     APPLICATION_NOT_FOUND(404-3, "Application Not Found"),
     BOARD_NOT_FOUND(404-4, "Board Not Found"),
+    REVIEW_NOT_FOUND(404-5, "Review Not Found"),
 
-    REFRESH_TOKEN_NOT_FOUND(404-5, "RefreshToken Not Found"),
+    REFRESH_TOKEN_NOT_FOUND(404-6, "RefreshToken Not Found"),
 
     USER_EXIST(409-1, "User Exist"),
 

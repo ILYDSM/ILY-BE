@@ -16,7 +16,7 @@ public class BoardDeleteService {
     @Transactional
     public void execute(Long boardId) {
         Board board = boardFacade.findByBoardId(boardId);
-        boardFacade.CheckWriter(board);
+        boardFacade.checkWriter(board);
 
         boardRepository.delete(board);
     }

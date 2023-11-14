@@ -19,7 +19,7 @@ public class BoardUpdateService {
     @Transactional
     public void execute(Long boardId, BoardRequest request) {
         Board board = boardFacade.findByBoardId(boardId);
-        boardFacade.CheckWriter(board);
+        boardFacade.checkWriter(board);
 
         board.boardUpdate(request.getContent(), LocalDateTime.now());
 

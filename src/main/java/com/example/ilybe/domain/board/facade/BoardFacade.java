@@ -18,7 +18,7 @@ public class BoardFacade {
     private final BoardRepository boardRepository;
     private final UserFacade userFacade;
 
-    public void CheckWriter(Board board) {
+    public void checkWriter(Board board) {
         if(!userFacade.getCurrentUser().equals(board.getUser()))
             throw WriterMismatchedException.EXCEPTION;
     }

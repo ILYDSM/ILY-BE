@@ -45,7 +45,7 @@ public class Review {
     @JoinColumn(name = "meet_id")
     private Meet meet;
 
-    public void boardUpdate(String content, LocalDateTime createDate) {
+    public void reviewUpdate(String content, LocalDateTime createDate) {
         this.content = content;
         this.createDate = createDate;
     }

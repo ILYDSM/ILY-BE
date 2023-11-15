@@ -10,6 +10,7 @@ import com.example.ilybe.domain.user.exception.UserExistException;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -19,6 +20,7 @@ public class ApplicantCreateService {
     private final MeetFacade meetFacade;
     private final ApplicantFacade applicantFacade;
 
+    @Transactional
     public void execute(Long meetId) {
         Long user = userFacade.getCurrentUser().getId();
         Meet meet = meetFacade.findByMeetId(meetId);

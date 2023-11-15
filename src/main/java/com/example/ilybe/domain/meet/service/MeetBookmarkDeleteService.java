@@ -7,6 +7,7 @@ import com.example.ilybe.domain.user.domain.repository.UserRepository;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class MeetBookmarkDeleteService {
     private final MeetFacade meetFacade;
     private final UserFacade userFacade;
 
+    @Transactional
     public void execute(Long meetId) {
         Meet meet = meetFacade.findByMeetId(meetId);
         User user = userFacade.getCurrentUser();

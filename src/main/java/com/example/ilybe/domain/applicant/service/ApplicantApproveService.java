@@ -11,6 +11,7 @@ import com.example.ilybe.domain.user.domain.User;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -21,6 +22,7 @@ public class ApplicantApproveService {
     private final MeetFacade meetFacade;
     private final ApplicantFacade applicantFacade;
 
+    @Transactional
     public void execute(Long meetId, Long userId, boolean approve) {
         Meet meet = meetFacade.findByMeetId(meetId);
         meetFacade.checkCreator(meet);

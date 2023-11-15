@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,8 +23,10 @@ public class ApplicantListService {
     private final UserFacade userFacade;
     private final MeetFacade meetFacade;
 
+    @Transactional
     public Page<ApplicantListResponse> execute(Long meetId, Pageable pageable) {
         Meet meet = meetFacade.findByMeetId(meetId);
+        meetFacade.checkCreator(meet);
         List<Applicant> applicants = applicantFacade.findByMeet(meet);
 
         List<User> applicationUsers = applicants.stream()

@@ -1,4 +1,4 @@
-package com.example.ilybe.domain.board.domain;
+package com.example.ilybe.domain.review.domain;
 
 import com.example.ilybe.domain.meet.domain.Meet;
 import com.example.ilybe.domain.user.domain.User;
@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Board {
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -45,7 +45,7 @@ public class Board {
     @JoinColumn(name = "meet_id")
     private Meet meet;
 
-    public void boardUpdate(String content, LocalDateTime createDate) {
+    public void reviewUpdate(String content, LocalDateTime createDate) {
         this.content = content;
         this.createDate = createDate;
     }

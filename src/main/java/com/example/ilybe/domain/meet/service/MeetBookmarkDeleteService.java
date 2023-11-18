@@ -23,9 +23,9 @@ public class MeetBookmarkDeleteService {
         Meet meet = meetFacade.findByMeetId(meetId);
         User user = userFacade.getCurrentUser();
 
-        List<Meet> bookmarks = user.getBookmarks();
+        List<Meet> meets = user.getMeets();
 
-        bookmarks.remove(meet);
+        meets.remove(meet);
 
         userRepository.save(user);
     }

@@ -44,7 +44,7 @@ public class User {
     private List<Record> records;
 
     @OneToMany
-    private List<Meet> bookmarks;
+    private List<Meet> meets;
 
     @Builder
     public User(String nickname, String email, String password, List<Interest> interests) {

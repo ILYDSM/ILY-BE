@@ -13,6 +13,7 @@ import com.example.ilybe.domain.meet.service.MeetDetailsService;
 import com.example.ilybe.domain.meet.service.MeetRecommendService;
 import com.example.ilybe.domain.meet.service.MeetSearchService;
 import com.example.ilybe.domain.meet.service.MeetUpdateService;
+import com.example.ilybe.domain.meet.service.MeetWithdrawService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,6 +41,7 @@ public class MeetController {
     private final MeetCategoryService meetCategoryService;
     private final MeetSearchService meetSearchService;
     private final MeetCategorySearchService meetCategorySearchService;
+    private final MeetWithdrawService meetWithdrawService;
 
     @PostMapping
     public Long MeetCreate(@RequestBody @Valid MeetCreateRequest request) {
@@ -80,4 +82,10 @@ public class MeetController {
     public Page<MeetListResponse> MeetCategorySearch(@RequestParam Type type, @RequestParam String keyword, Pageable pageable) {
         return meetCategorySearchService.execute(type, keyword, pageable);
     }
+
+    @DeleteMapping("/withdraw/{id}")
+    public void MeetWithdraw(@PathVariable("id") Long meetId) {
+        meetWithdrawService.execute(meetId);
+    }
+
 }

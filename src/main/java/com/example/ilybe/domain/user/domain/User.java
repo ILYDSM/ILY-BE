@@ -64,4 +64,9 @@ public class User {
     public void minusPoint(Integer price) {
         this.point -= price;
     }
+
+    public void updateUserInfo(String email, String nickname) {
+        this.email = email;
+        this.nickname = nickname;
+    }
 }

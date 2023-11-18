@@ -6,6 +6,7 @@ import com.example.ilybe.domain.applicant.exception.ApplicationNotCreateExceptio
 import com.example.ilybe.domain.applicant.facade.ApplicantFacade;
 import com.example.ilybe.domain.meet.domain.Meet;
 import com.example.ilybe.domain.meet.facade.MeetFacade;
+import com.example.ilybe.domain.user.domain.User;
 import com.example.ilybe.domain.user.exception.UserExistException;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
@@ -22,19 +23,19 @@ public class ApplicantCreateService {
 
     @Transactional
     public void execute(Long meetId) {
-        Long user = userFacade.getCurrentUser().getId();
+        User user = userFacade.getCurrentUser();
         Meet meet = meetFacade.findByMeetId(meetId);
-        Applicant applicant = applicantFacade.findByUserAndMeet(user, meet);
+        Applicant applicant = applicantFacade.findByUserAndMeet(user.getId(), meet);
 
         if(applicant == null) {
             applicantRepository.save(Applicant.builder()
-                    .user(user)
+                    .user(user.getId())
                     .meet(meet)
                     .build());
             return;
         }
 
-        if(meet.getUsers().equals(user)) {
+        if(meet.getUsers().contains(user)) {
             throw ApplicationNotCreateException.EXCEPTION;
         } else {
             throw UserExistException.EXCEPTION;

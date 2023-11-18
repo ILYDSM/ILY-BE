@@ -27,7 +27,7 @@ public class Meet {
 
     private Long personnel;
 
-    @OneToMany
+    @ManyToMany
     private List<User> users;
 
     @OneToOne

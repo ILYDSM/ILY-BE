@@ -12,6 +12,7 @@ import java.util.List;
 
 @Getter
 @Entity
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Target {
     @Id
@@ -30,6 +31,8 @@ public class Target {
     @Column(nullable = false)
     private LocalDate cycleDate;
     private LocalDate achievedAt;
+
+    private Boolean isViewable;
 
     @Column(nullable = false)
     @ColumnDefault("'Gray'")
@@ -58,5 +61,6 @@ public class Target {
         this.cycleDate = cycleDate;
         this.theme = theme;
         this.user = user;
+        this.isViewable = true;
     }
 }

@@ -7,6 +7,7 @@ import com.example.ilybe.domain.user.domain.User;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class MeetWithdrawService {
     private final UserFacade userFacade;
     private final MeetRepository meetRepository;
 
+    @Transactional
     public void execute(Long meetId) {
         Meet meet = meetFacade.findByMeetId(meetId);
         List<User> users = meet.getUsers();

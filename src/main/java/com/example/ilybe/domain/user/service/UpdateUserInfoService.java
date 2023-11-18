@@ -6,6 +6,7 @@ import com.example.ilybe.domain.user.facade.UserFacade;
 import com.example.ilybe.domain.user.presentation.dto.request.UpdateUserInfoRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -13,6 +14,7 @@ public class UpdateUserInfoService {
     private final UserFacade userFacade;
     private final UserRepository userRepository;
 
+    @Transactional
     public void execute(UpdateUserInfoRequest request) {
         User user = userFacade.getCurrentUser();
 

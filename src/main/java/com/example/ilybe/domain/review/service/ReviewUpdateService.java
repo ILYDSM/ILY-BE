@@ -6,6 +6,7 @@ import com.example.ilybe.domain.review.facade.ReviewFacade;
 import com.example.ilybe.domain.review.presentation.dto.request.ReviewRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +16,7 @@ public class ReviewUpdateService {
     private final ReviewRepository reviewRepository;
     private final ReviewFacade reviewFacade;
 
+    @Transactional
     public void execute(Long reviewId, ReviewRequest request) {
         Review review = reviewFacade.findByReviewId(reviewId);
         reviewFacade.checkWriter(review);

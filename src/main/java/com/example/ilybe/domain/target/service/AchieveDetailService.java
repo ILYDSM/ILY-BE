@@ -6,7 +6,6 @@ import com.example.ilybe.domain.target.domain.DetailTarget;
 import com.example.ilybe.domain.target.domain.SubTarget;
 import com.example.ilybe.domain.target.domain.Target;
 import com.example.ilybe.domain.target.domain.repository.DetailTargetRepository;
-import com.example.ilybe.domain.target.presentation.dto.request.AchieveDetailRequest;
 import com.example.ilybe.domain.user.domain.User;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +24,7 @@ public class AchieveDetailService {
     @Transactional
     public void execute(Long id) {
         LocalDate today = LocalDate.now();
+        User user = userFacade.getCurrentUser();
         DetailTarget detailTarget = detailTargetRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         detailTarget.setAchievedAt(today);
         SubTarget subTarget = detailTarget.getSubTarget();
@@ -33,10 +33,10 @@ public class AchieveDetailService {
             Target target = subTarget.getTarget();
             if (target.getSubTargets().stream().filter(SubTarget::isAchieved).toList().size() == 8) {
                 target.setAchievedAt(today);
+                user.setPoint(user.getPoint() + 10);
             }
         }
 
-        User user = userFacade.getCurrentUser();
         Record record = recordRepository.findByDateAndUser(today, user).orElse(new Record(today, user));
         record.setCount(record.getCount() + 1);
         recordRepository.save(record);

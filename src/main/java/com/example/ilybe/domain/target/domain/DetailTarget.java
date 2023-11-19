@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 @Getter
 @Entity
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DetailTarget {
     @Id

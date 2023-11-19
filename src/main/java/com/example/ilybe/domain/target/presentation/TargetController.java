@@ -22,6 +22,7 @@ public class TargetController {
     private final QueryTargetsService queryTargetsService;
     private final QueryTargetInfoService queryTargetInfoService;
     private final QuerySubTargetInfoService querySubTargetInfoService;
+    private final AchieveDetailService achieveDetailService;
 
     @PostMapping
     public void createTarget(@RequestBody @Valid CreateTargetRequest request) {
@@ -51,5 +52,10 @@ public class TargetController {
     @GetMapping("/sub/{target-id}")
     public QuerySubTargetResponse querySubTarget(@PathVariable("target-id") Long id) {
         return querySubTargetInfoService.execute(id);
+    }
+
+    @PatchMapping("/detail/{target-id}")
+    public void achiveTarget(@PathVariable("target-id") Long id) {
+        achieveDetailService.execute(id);
     }
 }

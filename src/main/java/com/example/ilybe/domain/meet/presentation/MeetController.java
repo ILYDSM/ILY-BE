@@ -15,8 +15,6 @@ import com.example.ilybe.domain.meet.service.MeetSearchService;
 import com.example.ilybe.domain.meet.service.MeetUpdateService;
 import com.example.ilybe.domain.meet.service.MeetWithdrawService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -28,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RequestMapping("/meet")
 @RequiredArgsConstructor
@@ -64,23 +63,23 @@ public class MeetController {
     }
 
     @GetMapping
-    public Page<MeetListResponse> MeetRecommend(Pageable pageable) {
-        return meetRecommendService.execute(pageable);
+    public List<MeetListResponse> MeetRecommend() {
+        return meetRecommendService.execute();
     }
 
     @GetMapping("/category")
-    public Page<MeetListResponse> MeetCategory(@RequestParam Type type, Pageable pageable) {
-        return meetCategoryService.execute(type, pageable);
+    public List<MeetListResponse> MeetCategory(@RequestParam Type type) {
+        return meetCategoryService.execute(type);
     }
 
     @GetMapping("/search")
-    public Page<MeetListResponse> MeetSearch(@RequestParam String keyword, Pageable pageable) {
-        return meetSearchService.execute(keyword, pageable);
+    public List<MeetListResponse> MeetSearch(@RequestParam String keyword) {
+        return meetSearchService.execute(keyword);
     }
 
     @GetMapping("/category/search")
-    public Page<MeetListResponse> MeetCategorySearch(@RequestParam Type type, @RequestParam String keyword, Pageable pageable) {
-        return meetCategorySearchService.execute(type, keyword, pageable);
+    public List<MeetListResponse> MeetCategorySearch(@RequestParam Type type, @RequestParam String keyword) {
+        return meetCategorySearchService.execute(type, keyword);
     }
 
     @DeleteMapping("/withdraw/{id}")

@@ -1,11 +1,8 @@
 package com.example.ilybe.domain.meet.service;
 
-import com.example.ilybe.domain.meet.domain.Meet;
 import com.example.ilybe.domain.meet.facade.MeetFacade;
 import com.example.ilybe.domain.meet.presentation.dto.response.MeetListResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,15 +15,15 @@ public class MeetSearchService {
     private final MeetFacade meetFacade;
 
     @Transactional
-    public Page<MeetListResponse> execute(String keyword, Pageable pageable) {
-        List<Meet> meets = meetFacade.findAll();
+    public List<MeetListResponse> execute(String keyword) {
 
-        List<Meet> meetSearch = meets
-                .stream()
+        return meetFacade.findAll().stream()
+                .map(meet -> MeetListResponse.builder()
+                        .title(meet.getTitle())
+                        .content(meet.getContent())
+                        .participant(meet.getPersonnel())
+                        .build())
                 .filter(meet -> meet.getTitle().contains(keyword))
                 .collect(Collectors.toList());
-
-        return meetFacade.listToPage(meetSearch, pageable)
-                .map(MeetListResponse::from);
     }
 }

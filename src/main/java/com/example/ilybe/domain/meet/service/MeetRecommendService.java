@@ -1,6 +1,5 @@
 package com.example.ilybe.domain.meet.service;
 
-import com.example.ilybe.domain.meet.domain.Meet;
 import com.example.ilybe.domain.meet.domain.Type;
 import com.example.ilybe.domain.meet.facade.MeetFacade;
 import com.example.ilybe.domain.meet.presentation.dto.response.MeetListResponse;
@@ -8,8 +7,6 @@ import com.example.ilybe.domain.user.domain.Interest;
 import com.example.ilybe.domain.user.domain.User;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +21,7 @@ public class MeetRecommendService {
     private final MeetFacade meetFacade;
 
     @Transactional
-    public Page<MeetListResponse> execute(Pageable pageable) {
+    public List<MeetListResponse> execute() {
         User user = userFacade.getCurrentUser();
 
         List<Type> meetInterests = meetFacade.findAllType();
@@ -34,12 +31,18 @@ public class MeetRecommendService {
                 .filter(type -> userInterests.contains(Interest.valueOf(type.name())))
                 .collect(Collectors.toList());
 
-        List<Meet> meets = meetFacade.findByTypeIn(filteredInterests).stream().distinct().collect(Collectors.toList());
+        List<MeetListResponse> meets = meetFacade.findByTypeIn(filteredInterests).stream()
+                .distinct()
+                .map(meet -> MeetListResponse.builder()
+                        .title(meet.getTitle())
+                        .content(meet.getContent())
+                        .participant(meet.getPersonnel())
+                        .build())
+                .collect(Collectors.toList());
 
         Collections.shuffle(meets);
 
-        return meetFacade.listToPage(meets, pageable)
-                .map(MeetListResponse::from);
+        return meets;
 
     }
 }

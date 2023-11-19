@@ -1,9 +1,11 @@
 package com.example.ilybe.domain.user.presentation;
 
+import com.example.ilybe.domain.user.presentation.dto.request.UpdateInterestRequest;
 import com.example.ilybe.domain.user.presentation.dto.request.UpdatePasswordRequest;
 import com.example.ilybe.domain.user.presentation.dto.request.UpdateUserInfoRequest;
 import com.example.ilybe.domain.user.presentation.dto.request.UserSignupRequest;
 import com.example.ilybe.domain.user.presentation.dto.response.UserInfoResponse;
+import com.example.ilybe.domain.user.service.UpdateInterestService;
 import com.example.ilybe.domain.user.service.UpdatePasswordService;
 import com.example.ilybe.domain.user.service.UpdateUserInfoService;
 import com.example.ilybe.domain.user.service.UserInfoService;
@@ -24,6 +26,7 @@ public class UserController {
     private final UpdatePasswordService updatePasswordService;
     private final UserInfoService userInfoService;
     private final UpdateUserInfoService updateUserInfoService;
+    private final UpdateInterestService updateInterestService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -49,5 +52,10 @@ public class UserController {
     @PatchMapping("/profile")
     public void updateUserInfo(@RequestBody @Valid UpdateUserInfoRequest request) {
         updateUserInfoService.execute(request);
+    }
+
+    @PatchMapping("/interest")
+    public void updateInterest(@RequestBody @Valid UpdateInterestRequest request) {
+        updateInterestService.execute(request);
     }
 }

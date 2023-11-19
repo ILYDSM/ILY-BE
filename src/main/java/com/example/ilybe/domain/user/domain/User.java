@@ -69,4 +69,8 @@ public class User {
         this.email = email;
         this.nickname = nickname;
     }
+
+    public void updateInterest(List<Interest> interests) {
+        this.interests = interests;
+    }
 }

@@ -24,10 +24,10 @@ public class MeetBookmarkCreateService {
         Meet meet = meetFacade.findByMeetId(meetId);
         User user = userFacade.getCurrentUser();
 
-        List<Meet> bookmarks = user.getBookmarks();
+        List<Meet> meets = user.getMeets();
 
-        if(!bookmarks.contains(meet)){
-            bookmarks.add(meet);
+        if(!meets.contains(meet)){
+            meets.add(meet);
         }
         else{
             throw AlreadyBookmarkedException.EXCEPTION;

@@ -44,7 +44,7 @@ public class User {
     private List<Record> records;
 
     @OneToMany
-    private List<Meet> bookmarks;
+    private List<Meet> meets;
 
     @Builder
     public User(String nickname, String email, String password, List<Interest> interests) {
@@ -63,5 +63,10 @@ public class User {
 
     public void minusPoint(Integer price) {
         this.point -= price;
+    }
+
+    public void updateUserInfo(String email, String nickname) {
+        this.email = email;
+        this.nickname = nickname;
     }
 }

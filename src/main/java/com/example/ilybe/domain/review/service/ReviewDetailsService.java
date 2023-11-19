@@ -6,6 +6,7 @@ import com.example.ilybe.domain.review.facade.ReviewFacade;
 import com.example.ilybe.domain.review.presentation.dto.response.ReviewDetailsResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +17,7 @@ public class ReviewDetailsService {
     private final MeetFacade meetFacade;
     private final ReviewFacade reviewFacade;
 
+    @Transactional
     public List<ReviewDetailsResponse> execute(Long meetId) {
         Meet meet = meetFacade.findByMeetId(meetId);
 

@@ -1,9 +1,9 @@
 package com.example.ilybe.domain.meet.service;
 
 import com.example.ilybe.domain.meet.domain.Meet;
+import com.example.ilybe.domain.meet.domain.repository.MeetRepository;
 import com.example.ilybe.domain.meet.facade.MeetFacade;
 import com.example.ilybe.domain.user.domain.User;
-import com.example.ilybe.domain.user.domain.repository.UserRepository;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,20 +13,18 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class MeetBookmarkDeleteService {
-    private final UserRepository userRepository;
+public class MeetWithdrawService {
     private final MeetFacade meetFacade;
     private final UserFacade userFacade;
+    private final MeetRepository meetRepository;
 
     @Transactional
     public void execute(Long meetId) {
         Meet meet = meetFacade.findByMeetId(meetId);
-        User user = userFacade.getCurrentUser();
+        List<User> users = meet.getUsers();
 
-        List<Meet> meets = user.getMeets();
+        users.removeIf(user -> user.getId().equals(userFacade.getCurrentUser().getId()));
 
-        meets.remove(meet);
-
-        userRepository.save(user);
+        meetRepository.save(meet);
     }
 }

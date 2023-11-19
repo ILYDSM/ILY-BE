@@ -32,6 +32,8 @@ public class CreateTargetRequest {
 
     private Integer themePrice;
 
+    private Long meetId;
+
 //    @NotNull
 //    private String firstSubTarget;
 //

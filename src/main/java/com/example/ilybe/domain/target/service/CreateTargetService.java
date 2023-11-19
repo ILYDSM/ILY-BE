@@ -1,5 +1,7 @@
 package com.example.ilybe.domain.target.service;
 
+import com.example.ilybe.domain.meet.domain.Meet;
+import com.example.ilybe.domain.meet.domain.repository.MeetRepository;
 import com.example.ilybe.domain.target.domain.DetailTarget;
 import com.example.ilybe.domain.target.domain.SubTarget;
 import com.example.ilybe.domain.target.domain.Target;
@@ -20,6 +22,7 @@ public class CreateTargetService {
     private final SubTargetRepository subTargetRepository;
     private final DetailTargetRepository detailTargetRepository;
     private final UserFacade userFacade;
+    private final MeetRepository meetRepository;
 
     @Transactional
     public void execute(CreateTargetRequest request) {
@@ -58,6 +61,11 @@ public class CreateTargetService {
                                 .build()
                 );
             }
+        }
+
+        if(request.getMeetId() != null) {
+            Meet meet = meetRepository.findById(request.getMeetId()).orElseThrow(IllegalArgumentException::new);
+            target.setMeet(meet);
         }
     }
 }

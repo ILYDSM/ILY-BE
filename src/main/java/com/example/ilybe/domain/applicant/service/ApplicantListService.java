@@ -8,8 +8,6 @@ import com.example.ilybe.domain.meet.facade.MeetFacade;
 import com.example.ilybe.domain.user.domain.User;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,18 +22,17 @@ public class ApplicantListService {
     private final MeetFacade meetFacade;
 
     @Transactional
-    public Page<ApplicantListResponse> execute(Long meetId, Pageable pageable) {
+    public List<ApplicantListResponse> execute(Long meetId) {
         Meet meet = meetFacade.findByMeetId(meetId);
         meetFacade.checkCreator(meet);
         List<Applicant> applicants = applicantFacade.findByMeet(meet);
+        User user = userFacade.getCurrentUser();
 
-        List<User> applicationUsers = applicants.stream()
-                .map(Applicant::getUser)
-                .map(userFacade::findById)
-                .map(user -> new User(user.getId(), user.getNickname()))
+        return applicants.stream()
+                .map(applicant -> ApplicantListResponse.builder()
+                        .nickname(user.getNickname())
+                        .userId(user.getId())
+                        .build())
                 .collect(Collectors.toList());
-
-        return applicantFacade.listToPage(applicationUsers, pageable)
-                .map(ApplicantListResponse::from);
     }
 }

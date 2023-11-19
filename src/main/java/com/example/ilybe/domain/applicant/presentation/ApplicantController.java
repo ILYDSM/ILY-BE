@@ -5,8 +5,6 @@ import com.example.ilybe.domain.applicant.service.ApplicantApproveService;
 import com.example.ilybe.domain.applicant.service.ApplicantCreateService;
 import com.example.ilybe.domain.applicant.service.ApplicantListService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RequestMapping("/applicant")
 @RequiredArgsConstructor
@@ -34,8 +34,8 @@ public class ApplicantController {
     }
 
     @GetMapping("/{id}")
-    public Page<ApplicantListResponse> applicantList(@PathVariable("id") Long meetId, Pageable pageable) {
-        return applicantListService.execute(meetId, pageable);
+    public List<ApplicantListResponse> applicantList(@PathVariable("id") Long meetId) {
+        return applicantListService.execute(meetId);
     }
 
 }

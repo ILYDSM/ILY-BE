@@ -20,6 +20,7 @@ public class UserInfoService {
                 .nickname(user.getNickname())
                 .email(user.getEmail())
                 .point(user.getPoint())
+                .interests(user.getInterests())
                 .build();
     }
 }

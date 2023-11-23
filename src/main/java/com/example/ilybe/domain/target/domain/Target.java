@@ -19,16 +19,12 @@ public class Target {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String content;
 
-    @Column(nullable = false)
     private Integer cycleCount;
 
-    @Column(nullable = false)
     private Integer cycleTerm;
-
-    @Column(nullable = false)
+    
     private LocalDate cycleDate;
     private LocalDate achievedAt;
 

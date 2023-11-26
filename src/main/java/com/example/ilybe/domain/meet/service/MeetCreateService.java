@@ -44,6 +44,7 @@ public class MeetCreateService {
                         .cycleTerm(null)
                         .cycleCount(null)
                         .user(user)
+                        .theme("Gray")
                         .build()
         );
 

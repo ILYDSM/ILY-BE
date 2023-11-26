@@ -24,14 +24,14 @@ public class Target {
     private Integer cycleCount;
 
     private Integer cycleTerm;
-    
+
     private LocalDate cycleDate;
     private LocalDate achievedAt;
 
     private Boolean isViewable;
 
     @Column(nullable = false)
-    @ColumnDefault("'Gray'")
+    @ColumnDefault("Gray")
     private String theme;
 
     @OneToMany(mappedBy = "target", cascade = CascadeType.ALL)

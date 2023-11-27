@@ -15,7 +15,6 @@ public class MeetDetailsService {
     @Transactional
     public MeetDetailsResponse execute(Long meetId) {
         Meet meet = meetFacade.findByMeetId(meetId);
-        Long users = (long) meet.getUsers().size();
 
         return MeetDetailsResponse.builder()
                 .meetId(meet.getId())
@@ -24,7 +23,7 @@ public class MeetDetailsService {
                 .content(meet.getContent())
                 .type(meet.getType())
                 .personnel(meet.getPersonnel())
-                .participant(users)
+                .participant((long) meet.getUsers().size())
                 .build();
     }
 }

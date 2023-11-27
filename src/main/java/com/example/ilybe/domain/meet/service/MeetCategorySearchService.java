@@ -23,7 +23,7 @@ public class MeetCategorySearchService {
                         .meetId(meet.getId())
                         .title(meet.getTitle())
                         .content(meet.getContent())
-                        .participant(meet.getPersonnel())
+                        .participant((long) meet.getUsers().size())
                         .build())
                 .filter(meet -> meet.getTitle().contains(keyword))
                 .collect(Collectors.toList());

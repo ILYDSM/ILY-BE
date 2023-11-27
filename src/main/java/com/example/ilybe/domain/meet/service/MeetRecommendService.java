@@ -39,7 +39,7 @@ public class MeetRecommendService {
                         .meetId(meet.getId())
                         .title(meet.getTitle())
                         .content(meet.getContent())
-                        .participant(meet.getPersonnel())
+                        .participant((long) meet.getUsers().size())
                         .build())
                 .collect(Collectors.toList());
 

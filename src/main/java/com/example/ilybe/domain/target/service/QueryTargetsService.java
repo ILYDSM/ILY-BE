@@ -18,7 +18,7 @@ public class QueryTargetsService {
     public List<QueryTargetsResponse> execute() {
         User user = userFacade.getCurrentUser();
         return targetRepository.findAllByUserAndIsViewable(user, true).stream().map(
-                it -> new QueryTargetsResponse(it.getId(), it.getContent(), it.isAchieved())
+                it -> new QueryTargetsResponse(it.getId(), it.getContent(), it.isAchieved(), it.getTheme(), it.getMeet().getId())
         ).toList();
     }
 }

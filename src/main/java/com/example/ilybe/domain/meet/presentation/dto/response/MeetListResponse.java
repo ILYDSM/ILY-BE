@@ -8,6 +8,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class MeetListResponse {
+    private Long meetId;
     private String title;
     private String content;
     private Long participant;

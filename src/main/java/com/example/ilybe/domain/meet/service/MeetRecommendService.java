@@ -3,6 +3,7 @@ package com.example.ilybe.domain.meet.service;
 import com.example.ilybe.domain.meet.domain.Type;
 import com.example.ilybe.domain.meet.facade.MeetFacade;
 import com.example.ilybe.domain.meet.presentation.dto.response.MeetListResponse;
+import com.example.ilybe.domain.target.domain.repository.TargetRepository;
 import com.example.ilybe.domain.user.domain.Interest;
 import com.example.ilybe.domain.user.domain.User;
 import com.example.ilybe.domain.user.facade.UserFacade;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 public class MeetRecommendService {
     private final UserFacade userFacade;
     private final MeetFacade meetFacade;
+    private final TargetRepository targetRepository;
 
     @Transactional
     public List<MeetListResponse> execute() {
@@ -34,6 +36,7 @@ public class MeetRecommendService {
         List<MeetListResponse> meets = meetFacade.findByTypeIn(filteredInterests).stream()
                 .distinct()
                 .map(meet -> MeetListResponse.builder()
+                        .meetId(meet.getId())
                         .title(meet.getTitle())
                         .content(meet.getContent())
                         .participant(meet.getPersonnel())

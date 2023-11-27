@@ -11,6 +11,8 @@ import java.util.List;
 @Getter
 @Builder
 public class MeetDetailsResponse {
+    private Long meetId;
+    private Long targetId;
     private String title;
     private String content;
     private List<Type> type;

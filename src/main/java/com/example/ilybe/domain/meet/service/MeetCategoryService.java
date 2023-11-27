@@ -20,6 +20,7 @@ public class MeetCategoryService {
 
         return meetFacade.findByType(type).stream()
                 .map(meet -> MeetListResponse.builder()
+                        .meetId(meet.getId())
                         .title(meet.getTitle())
                         .content(meet.getContent())
                         .participant(meet.getPersonnel())

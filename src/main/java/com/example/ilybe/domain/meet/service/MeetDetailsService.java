@@ -18,6 +18,8 @@ public class MeetDetailsService {
         Long users = (long) meet.getUsers().size();
 
         return MeetDetailsResponse.builder()
+                .meetId(meet.getId())
+                .targetId(meet.getTarget().getId())
                 .title(meet.getTitle())
                 .content(meet.getContent())
                 .type(meet.getType())

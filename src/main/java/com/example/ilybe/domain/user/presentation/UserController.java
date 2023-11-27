@@ -5,10 +5,12 @@ import com.example.ilybe.domain.user.presentation.dto.request.UpdatePasswordRequ
 import com.example.ilybe.domain.user.presentation.dto.request.UpdateUserInfoRequest;
 import com.example.ilybe.domain.user.presentation.dto.request.UserSignupRequest;
 import com.example.ilybe.domain.user.presentation.dto.response.UserInfoResponse;
+import com.example.ilybe.domain.user.presentation.dto.response.UserInterestResponse;
 import com.example.ilybe.domain.user.service.UpdateInterestService;
 import com.example.ilybe.domain.user.service.UpdatePasswordService;
 import com.example.ilybe.domain.user.service.UpdateUserInfoService;
 import com.example.ilybe.domain.user.service.UserInfoService;
+import com.example.ilybe.domain.user.service.UserInterestService;
 import com.example.ilybe.domain.user.service.UserSignupService;
 import com.example.ilybe.domain.user.service.UserWithdrawlService;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +29,7 @@ public class UserController {
     private final UserInfoService userInfoService;
     private final UpdateUserInfoService updateUserInfoService;
     private final UpdateInterestService updateInterestService;
+    private final UserInterestService userInterestService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -57,5 +60,10 @@ public class UserController {
     @PatchMapping("/interest")
     public void updateInterest(@RequestBody @Valid UpdateInterestRequest request) {
         updateInterestService.execute(request);
+    }
+
+    @GetMapping("/interest")
+    public UserInterestResponse userInterest() {
+        return userInterestService.execute();
     }
 }

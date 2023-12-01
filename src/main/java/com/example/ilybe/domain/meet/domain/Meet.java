@@ -30,11 +30,11 @@ public class Meet {
     @ManyToMany
     private List<User> users;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User manager;
 
-    @OneToOne(mappedBy = "meet", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "meet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Target target;
 
     public void meetUpdate(String title, String content, List<Type> type){

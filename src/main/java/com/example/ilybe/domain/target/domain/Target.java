@@ -37,11 +37,11 @@ public class Target {
     @OneToMany(mappedBy = "target", cascade = CascadeType.ALL)
     private List<SubTarget> subTargets = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "meet_id")
     private Meet meet;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 

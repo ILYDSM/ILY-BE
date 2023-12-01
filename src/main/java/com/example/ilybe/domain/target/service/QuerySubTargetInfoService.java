@@ -1,6 +1,7 @@
 package com.example.ilybe.domain.target.service;
 
 import com.example.ilybe.domain.target.domain.SubTarget;
+import com.example.ilybe.domain.target.domain.repository.DetailTargetRepository;
 import com.example.ilybe.domain.target.domain.repository.SubTargetRepository;
 import com.example.ilybe.domain.target.presentation.dto.response.DetailTargetResponse;
 import com.example.ilybe.domain.target.presentation.dto.response.QuerySubTargetResponse;
@@ -14,10 +15,12 @@ import java.util.List;
 @Service
 public class QuerySubTargetInfoService {
     private final SubTargetRepository subTargetRepository;
+    private final DetailTargetRepository detailTargetRepository;
 
     public QuerySubTargetResponse execute(Long id) {
         SubTarget subTarget = subTargetRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-        List<DetailTargetResponse> detailTargetResponses = subTarget.getDetailTargets().stream().map(it ->
+        List<DetailTargetResponse> detailTargetResponses = detailTargetRepository.findAllBySubTarget(subTarget)
+                .stream().map(it ->
                 new DetailTargetResponse(it.getId(), it.getContent(), it.isAchieved())
         ).toList();
 

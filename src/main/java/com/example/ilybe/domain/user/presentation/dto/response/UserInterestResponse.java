@@ -11,5 +11,5 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 public class UserInterestResponse {
-    private List<Interest> interests;
+    private final List<Interest> interests;
 }

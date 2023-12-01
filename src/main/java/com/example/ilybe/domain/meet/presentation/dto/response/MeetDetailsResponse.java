@@ -11,11 +11,11 @@ import java.util.List;
 @Getter
 @Builder
 public class MeetDetailsResponse {
-    private Long meetId;
-    private Long targetId;
-    private String title;
-    private String content;
-    private List<Type> type;
-    private Long personnel;
-    private Long participant;
+    private final Long meetId;
+    private final Long targetId;
+    private final String title;
+    private final String content;
+    private final List<Type> type;
+    private final Long personnel;
+    private final Long participant;
 }

@@ -8,6 +8,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class ApplicantListResponse {
-    private String nickname;
-    private Long userId;
+    private final String nickname;
+    private final Long userId;
 }

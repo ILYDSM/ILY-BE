@@ -11,8 +11,8 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 public class UserInfoResponse {
-    private String email;
-    private String nickname;
-    private Integer point;
-    private List<Interest> interests;
+    private final String email;
+    private final String nickname;
+    private final Integer point;
+    private final List<Interest> interests;
 }

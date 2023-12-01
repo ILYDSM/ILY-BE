@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 public class ReviewDetailsResponse {
-    private Long id;
-    private String writerName;
-    private String content;
-    private LocalDateTime createDate;
+    private final Long id;
+    private final String writerName;
+    private final String content;
+    private final LocalDateTime createDate;
 }

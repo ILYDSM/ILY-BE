@@ -8,8 +8,8 @@ import lombok.Getter;
 @Getter
 @Builder
 public class MeetListResponse {
-    private Long meetId;
-    private String title;
-    private String content;
-    private Long participant;
+    private final Long meetId;
+    private final String title;
+    private final String content;
+    private final Long participant;
 }

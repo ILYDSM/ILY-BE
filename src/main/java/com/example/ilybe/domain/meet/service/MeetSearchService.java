@@ -17,14 +17,28 @@ public class MeetSearchService {
     @Transactional
     public List<MeetListResponse> execute(String keyword) {
 
-        return meetFacade.findAll().stream()
-                .map(meet -> MeetListResponse.builder()
-                        .meetId(meet.getId())
-                        .title(meet.getTitle())
-                        .content(meet.getContent())
-                        .participant((long) meet.getUsers().size())
-                        .build())
-                .filter(meet -> meet.getTitle().contains(keyword))
-                .collect(Collectors.toList());
+        if(keyword == null) {
+            return meetFacade.findAll().stream()
+                    .map(meet -> MeetListResponse.builder()
+                            .meetId(meet.getId())
+                            .title(meet.getTitle())
+                            .content(meet.getContent())
+                            .participant((long) meet.getUsers().size())
+                            .build())
+                    .collect(Collectors.toList());
+        }
+
+        else {
+            return meetFacade.findAll().stream()
+                    .map(meet -> MeetListResponse.builder()
+                            .meetId(meet.getId())
+                            .title(meet.getTitle())
+                            .content(meet.getContent())
+                            .participant((long) meet.getUsers().size())
+                            .build())
+                    .filter(meet -> meet.getTitle().contains(keyword))
+                    .collect(Collectors.toList());
+        }
     }
+
 }

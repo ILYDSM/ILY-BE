@@ -31,7 +31,7 @@ public class Target {
     private Boolean isViewable;
 
     @Column(nullable = false)
-    @ColumnDefault("Gray")
+    @ColumnDefault("'Gray'")
     private String theme;
 
     @OneToMany(mappedBy = "target", cascade = CascadeType.ALL)

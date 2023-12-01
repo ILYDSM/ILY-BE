@@ -6,6 +6,7 @@ import com.example.ilybe.domain.target.domain.DetailTarget;
 import com.example.ilybe.domain.target.domain.SubTarget;
 import com.example.ilybe.domain.target.domain.Target;
 import com.example.ilybe.domain.target.domain.repository.DetailTargetRepository;
+import com.example.ilybe.domain.target.domain.repository.SubTargetRepository;
 import com.example.ilybe.domain.user.domain.User;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import java.time.LocalDate;
 @Service
 public class AchieveDetailService {
     private final DetailTargetRepository detailTargetRepository;
+    private final SubTargetRepository subTargetRepository;
     private final UserFacade userFacade;
     private final RecordRepository recordRepository;
 
@@ -28,10 +30,10 @@ public class AchieveDetailService {
         DetailTarget detailTarget = detailTargetRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         detailTarget.setAchievedAt(today);
         SubTarget subTarget = detailTarget.getSubTarget();
-        if (subTarget.getDetailTargets().stream().filter(DetailTarget::isAchieved).toList().size() == 8) {
+        if (detailTargetRepository.findAllBySubTarget(subTarget).stream().filter(DetailTarget::isAchieved).toList().size() == 8) {
             subTarget.setAchievedAt(today);
             Target target = subTarget.getTarget();
-            if (target.getSubTargets().stream().filter(SubTarget::isAchieved).toList().size() == 8) {
+            if (subTargetRepository.findAllByTarget(target).stream().filter(SubTarget::isAchieved).toList().size() == 8) {
                 target.setAchievedAt(today);
                 user.setPoint(user.getPoint() + 10);
             }

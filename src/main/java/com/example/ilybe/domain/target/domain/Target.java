@@ -50,7 +50,8 @@ public class Target {
     }
 
     @Builder
-    public Target(String content, Integer cycleCount, Integer cycleTerm, LocalDate cycleDate, String theme, User user) {
+    public Target(String content, Integer cycleCount, Integer cycleTerm, LocalDate cycleDate, String theme, User user,
+                  Meet meet) {
         this.content = content;
         this.cycleCount = cycleCount;
         this.cycleTerm = cycleTerm;
@@ -58,5 +59,6 @@ public class Target {
         this.theme = theme;
         this.user = user;
         this.isViewable = true;
+        this.meet = meet;
     }
 }

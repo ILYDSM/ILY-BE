@@ -45,6 +45,7 @@ public class MeetCreateService {
                         .cycleCount(null)
                         .user(user)
                         .theme("Gray")
+                        .meet(meet)
                         .build()
         );
 
@@ -64,8 +65,6 @@ public class MeetCreateService {
                 );
             }
         }
-
-        target.setMeet(meet);
 
         return meet.getId();
     }

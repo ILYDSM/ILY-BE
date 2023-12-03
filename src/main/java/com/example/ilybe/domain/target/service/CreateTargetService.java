@@ -43,6 +43,7 @@ public class CreateTargetService {
                         .cycleCount(request.getCycleCount())
                         .theme(request.getTheme())
                         .user(user)
+                        .meet(null)
                         .build()
         );
 

@@ -20,7 +20,7 @@ public class MeetDetailsService {
                 .meetId(meet.getId())
                 .targetId(meet.getTarget().getId())
                 .title(meet.getTitle())
-                .content(meet.getContent())
+                .meetContent(meet.getContent())
                 .type(meet.getType())
                 .personnel(meet.getPersonnel())
                 .participant((long) meet.getUsers().size())

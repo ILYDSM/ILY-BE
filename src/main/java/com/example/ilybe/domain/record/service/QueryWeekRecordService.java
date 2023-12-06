@@ -28,10 +28,11 @@ public class QueryWeekRecordService {
         LocalDate end = start.plusDays(6);
         LocalDate date = start;
         QueryWeekRecordResponse response = new QueryWeekRecordResponse(new ArrayList<>());
-        while(date.isBefore(end) || date.isEqual(end)) {
+        while(date.isBefore(end) || date.isAfter(start)) {
             if(recordRepository.findByDateAndUser(date, user).isPresent()) {
                 response.getDays().add(date.getDayOfWeek());
             }
+            date = date.plusDays(1);
         }
 
         return response;

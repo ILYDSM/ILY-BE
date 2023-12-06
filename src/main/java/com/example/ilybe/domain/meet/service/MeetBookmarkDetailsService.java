@@ -25,6 +25,7 @@ public class MeetBookmarkDetailsService {
                         .title(meet.getTitle())
                         .content(meet.getContent())
                         .participant((long) meet.getUsers().size())
+                        .theme(meet.getTarget().getTheme())
                         .build())
                 .collect(Collectors.toList());
     }

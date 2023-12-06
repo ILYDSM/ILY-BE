@@ -12,4 +12,5 @@ public class MeetListResponse {
     private final String title;
     private final String content;
     private final Long participant;
+    private final String theme;
 }

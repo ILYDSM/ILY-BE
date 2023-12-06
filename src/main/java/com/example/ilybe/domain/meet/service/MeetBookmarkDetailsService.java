@@ -1,6 +1,6 @@
 package com.example.ilybe.domain.meet.service;
 
-import com.example.ilybe.domain.meet.presentation.dto.response.MeetListResponse;
+import com.example.ilybe.domain.meet.presentation.dto.response.MeetBookmarkResponse;
 import com.example.ilybe.domain.user.domain.User;
 import com.example.ilybe.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
@@ -16,11 +16,11 @@ public class MeetBookmarkDetailsService {
     private final UserFacade userFacade;
 
     @Transactional
-    public List<MeetListResponse> execute() {
+    public List<MeetBookmarkResponse> execute() {
         User user = userFacade.getCurrentUser();
 
         return user.getMeets().stream()
-                .map(meet -> MeetListResponse.builder()
+                .map(meet -> MeetBookmarkResponse.builder()
                         .meetId(meet.getId())
                         .title(meet.getTitle())
                         .content(meet.getContent())

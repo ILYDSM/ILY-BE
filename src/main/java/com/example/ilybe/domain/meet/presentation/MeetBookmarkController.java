@@ -1,6 +1,6 @@
 package com.example.ilybe.domain.meet.presentation;
 
-import com.example.ilybe.domain.meet.presentation.dto.response.MeetListResponse;
+import com.example.ilybe.domain.meet.presentation.dto.response.MeetBookmarkResponse;
 import com.example.ilybe.domain.meet.service.MeetBookmarkCreateService;
 import com.example.ilybe.domain.meet.service.MeetBookmarkDeleteService;
 import com.example.ilybe.domain.meet.service.MeetBookmarkDetailsService;
@@ -33,7 +33,7 @@ public class MeetBookmarkController {
     }
 
     @GetMapping
-    public List<MeetListResponse> setMeetBookmarkDetailsService() {
+    public List<MeetBookmarkResponse> setMeetBookmarkDetailsService() {
         return meetBookmarkDetailsService.execute();
     }
 }

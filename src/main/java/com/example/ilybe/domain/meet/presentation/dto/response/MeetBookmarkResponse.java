@@ -5,11 +5,12 @@ import lombok.Builder;
 import lombok.Getter;
 
 @AllArgsConstructor
-@Getter
 @Builder
-public class MeetListResponse {
+@Getter
+public class MeetBookmarkResponse {
     private final Long meetId;
     private final String title;
     private final String content;
     private final Long participant;
+    private final String theme;
 }

@@ -39,7 +39,7 @@ public class MeetCreateService {
 
         Target target = targetRepository.save(
                 Target.builder()
-                        .content("")
+                        .content(request.getTitle())
                         .cycleDate(null)
                         .cycleTerm(null)
                         .cycleCount(null)
